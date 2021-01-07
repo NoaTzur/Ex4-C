@@ -142,6 +142,33 @@ untitled1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/build
 .PHONY : untitled1/fast
 
+fff.obj: fff.c.obj
+
+.PHONY : fff.obj
+
+# target to build an object file
+fff.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/fff.c.obj
+.PHONY : fff.c.obj
+
+fff.i: fff.c.i
+
+.PHONY : fff.i
+
+# target to preprocess a source file
+fff.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/fff.c.i
+.PHONY : fff.c.i
+
+fff.s: fff.c.s
+
+.PHONY : fff.s
+
+# target to generate assembly for a file
+fff.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/fff.c.s
+.PHONY : fff.c.s
+
 main.obj: main.c.obj
 
 .PHONY : main.obj
@@ -178,6 +205,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... untitled1
+	@echo ... fff.obj
+	@echo ... fff.i
+	@echo ... fff.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

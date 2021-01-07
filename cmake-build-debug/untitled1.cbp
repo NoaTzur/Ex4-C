@@ -74,6 +74,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Noa/CLionProjects/untitled1/fff.c">
+			<Option target="untitled1"/>
+		</Unit>
 		<Unit filename="C:/Users/Noa/CLionProjects/untitled1/main.c">
 			<Option target="untitled1"/>
 		</Unit>

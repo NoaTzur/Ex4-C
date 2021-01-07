@@ -13,12 +13,14 @@ typedef struct node{
     long unsigned int num_of_appearance;
     struct node *children[num_of_chars];
     char end; //remark if this node is a leaf (means that there is a word that ends here)
+    int num_of_children;
 }node;
 
 node* new_node(char c){
     struct node* n = (node*)malloc(sizeof (struct node));
     n -> num_of_appearance =0;
     n -> letter = c;
+    n -> num_of_children =0;
     for (int i = 0; i < num_of_chars; i++) {
         n -> children[i] = NULL;
     }
@@ -43,7 +45,8 @@ void printAllWords(node **root, char words[maxLen], int index, int reverse) {
     if((*root) == NULL){
         return;
     }
-    if(((*root)->end) == end_of_word){
+
+    if(((*root)->end) == end_of_word && reverse==0){
         if(strlen(words)> index){
             words[index] = '\0';
         }
@@ -66,13 +69,20 @@ void printAllWords(node **root, char words[maxLen], int index, int reverse) {
             }
         }
     }
+
+    if(((*root)->end) == end_of_word && reverse==1){
+        if(strlen(words)> index){
+            words[index] = '\0';
+        }
+        printf("%s\t%lu\n", words, (*root)->num_of_appearance);
+    }
 }
 
 
 int main(int argc, char *argv[]) {
     struct node* root = new_node('h');
 
-    struct node** fixTheRoot = &root;
+   struct node* fixTheRoot = &(*root);
     int reverse=0;
 
     if (argc >1 && strcmp("r", argv[1]) == 0){
@@ -80,16 +90,16 @@ int main(int argc, char *argv[]) {
     }
 
     char letter;
-
+    int wordLen=0;
     while (scanf("%c", &letter) != EOF) {
         if(letter == ' ' || letter == '\n'){
+            wordLen =0;
             root -> end = end_of_word;
             root -> num_of_appearance++;
-            root = *fixTheRoot; //turn back to the head, now ready for new word to insert
+            root = fixTheRoot; //turn back to the head, now ready for new word to insert
         }
         else{
             int index_of_letter = 0;
-            int wordLen=0;
             if(letter > 96 && letter < 123){
                 wordLen++;
                 index_of_letter = (int)letter - 'a';
@@ -104,6 +114,7 @@ int main(int argc, char *argv[]) {
             }
             if ((root->children[index_of_letter]) == NULL) { //there is no "char child" in the array
                 root->children[index_of_letter] = new_node(letter);
+                root->num_of_children++;
             }
             root = root->children[index_of_letter]; //brings the next child that will holds the next char in word
 
@@ -112,9 +123,11 @@ int main(int argc, char *argv[]) {
         }
 
     }
+    root -> end = end_of_word;
+    root -> num_of_appearance++;
+    root = fixTheRoot;
     char words[maxLen];
     printAllWords(&root, words, 0, reverse);
-
     clean_trie(&root);
     return 0;
 
