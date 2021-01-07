@@ -2,7 +2,6 @@
 #include <stdint.h>
 #include <string.h>
 #include <ctype.h>
-//#include <aclapi.h>
 #include <stdlib.h>
 
 #define end_of_word 36 //represents $ in ASCII
@@ -52,7 +51,7 @@ void printAllWords(node **root, char words[maxLen], int index, int reverse) {
             words[index] = '\0';
         }
         if(strlen(words) !=0){
-        printf("%s\t%lu\n", words, (*root)->num_of_appearance);
+        printf("%s %lu\n", words, (*root)->num_of_appearance);
         }
     }
 
