@@ -77,7 +77,7 @@ void printAllWords(node **root, char words[maxLen], int index, int reverse) {
             words[index] = '\0';
         }
          if(strlen(words) !=0){
-        printf("%s\t%lu\n", words, (*root)->num_of_appearance);
+        printf("%s %lu\n", words, (*root)->num_of_appearance);
         }
     }
 }
