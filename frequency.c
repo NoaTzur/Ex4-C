@@ -2,7 +2,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <ctype.h>
-#include <aclapi.h>
+//#include <aclapi.h>
+#include <stdlib.h>
 
 #define end_of_word 36 //represents $ in ASCII
 #define num_of_chars 26
@@ -50,7 +51,9 @@ void printAllWords(node **root, char words[maxLen], int index, int reverse) {
         if(strlen(words)> index){
             words[index] = '\0';
         }
+        if(strlen(words) !=0){
         printf("%s\t%lu\n", words, (*root)->num_of_appearance);
+        }
     }
 
     if(reverse) {
@@ -74,7 +77,9 @@ void printAllWords(node **root, char words[maxLen], int index, int reverse) {
         if(strlen(words)> index){
             words[index] = '\0';
         }
+         if(strlen(words) !=0){
         printf("%s\t%lu\n", words, (*root)->num_of_appearance);
+        }
     }
 }
 
@@ -89,7 +94,7 @@ int main(int argc, char *argv[]) {
         reverse = 1;
     }
 
-    char letter;
+    char letter='y';
     int wordLen=0;
     while (scanf("%c", &letter) != EOF) {
         if(letter == ' ' || letter == '\n'){
